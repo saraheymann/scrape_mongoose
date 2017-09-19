@@ -5,8 +5,7 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
 
   headline: {
-    type: String,
-    required: true
+    type: String
   },
   summary: {
     type: String,
@@ -16,7 +15,7 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  comment:{
+  Comment:{
     type: Schema.Types.ObjectId,
     ref: "Comment"
     }
