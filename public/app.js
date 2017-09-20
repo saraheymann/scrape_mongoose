@@ -2,7 +2,7 @@
     // For each one
     for (var i = 0; i < data.length; i++) {
         // Display the  information on the page
-        $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].headline + "<br />" + data[i].summary + "<br />" + data[i].url + "</p>");
+        $("#articles").append("<h5 class='card-panel red lighten-3 card-action'data-id=" + data[i]._id + "'><a href='https://www.democracynow.org" + data[i].url + "' target='_blank'>" + "<br />" + data[i].summary + "<br /> </a><div class='btn right'>Save Article</div></h5>");
     }
     });
 

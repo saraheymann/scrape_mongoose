@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
 
-  headline: {
-    type: String
-  },
+  // headline: {
+  //   type: String
+  // },
   summary: {
     type: String,
     required: true
