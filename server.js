@@ -11,6 +11,14 @@ var Comment = require("./models/comment.js");
 mongoose.Promise = Promise;
 
 var app = express();
+app.set('port', (process.env.PORT || 3000));
+var databaseUri = 'mongodb://heroku_lmhb31m4:mdjrv7bneceurn0861vatp2mg9@ds139994.mlab.com:39994/heroku_lmhb31m4';
+
+if (process.env.MONGODB_URI) {
+mongoose.connect(process.env.MONGODB_URI);
+} else {
+mongoose.connect(databaseUri);
+}
 
 app.use(logger("dev"));
 app.use(bodyParser.urlencoded({
@@ -22,7 +30,7 @@ app.use(express.static("public"));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-var promise = mongoose.connect('mongodb://localhost/mongooseScrape', {
+var promise = mongoose.connect('mongodb://heroku_lmhb31m4:mdjrv7bneceurn0861vatp2mg9@ds139994.mlab.com:39994/heroku_lmhb31m4', {
   useMongoClient: true,
 });
 
@@ -107,6 +115,10 @@ app.get("/saved", function(req, res) {
   });
 });
 
+app.get("/saved", function(req,res){
+        res.render("saved");
+});
+
 app.post("/saved/:id", function(req, res){
   var savedArticle = new Article(req.body)
   savedArticle.savedTrue();
@@ -123,6 +135,6 @@ app.post("/saved/:id", function(req, res){
 
 
 
-app.listen(3000, function() {
-  console.log("App running on port 3000!");
+app.listen(app.get('port'), function(){
+    console.log('running on 3000')
 });
