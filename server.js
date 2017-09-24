@@ -115,9 +115,9 @@ app.get("/saved", function(req, res) {
   });
 });
 
-app.get("/saved", function(req,res){
-        res.render("saved");
-});
+// app.get("/saved", function(req,res){
+//         res.render("saved");
+// });
 
 app.post("/saved/:id", function(req, res){
   var savedArticle = new Article(req.body)
@@ -130,7 +130,7 @@ app.post("/saved/:id", function(req, res){
       console.log(doc);
     }
   });
-  res.render("saved");
+  // res.render("saved");
 })
 
 
