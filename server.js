@@ -77,37 +77,6 @@ app.get("/scrape", function(req, res) {
   res.render("index");
 });
 
-app.get("/saved", function(req, res) {
-  // Grab every doc in the Articles array
-  Article.find({saved: true}, function(error, doc) {
-    // Log any errors
-    if (error) {
-      console.log(error);
-    }
-    // Or send the doc to the browser as a json object
-    else {
-      res.json(doc);
-    }
-  });
-  res.render("saved")
-});
-
-
-
-app.post("/saved/:id", function(req, res){
-  var savedArticle = new Article(req.body)
-  savedArticle.savedTrue();
-  savedArticle.save(function(error, doc){
-    if (error) {
-      res.send(error);
-    } else {
-      res.json(doc)
-    }
-  });
-})
-
-
-
 app.get("/articles", function(req, res) {
   // Grab every doc in the Articles array
   Article.find({}, function(error, doc) {
@@ -122,53 +91,35 @@ app.get("/articles", function(req, res) {
   });
 });
 
-app.get("/articles/:id", function(req, res) {
-  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-  Article.findOne({ "_id": req.params.id })
-    // ..and populate all of the notes associated with it
-    .populate("Comment")
-    // now, execute our query
-    .exec(function(error, doc) {
-    // Log any errors
-      if (error) {
-        console.log(error);
-      }
-      // Otherwise, send the doc to the browser as a json object
-      else {
-        res.json(doc);
-      }
-  });
-});
-
-// Create a new note or replace an existing note
-app.post("/articles/:id", function(req, res) {
-  // Create a new note and pass the req.body to the entry
-  var newComment = new Comment(req.body);
-  // And save the new note the db
-  newComment.save(function(error, doc) {
+app.get("/saved", function(req, res) {
+  // Grab every doc that's saved in the Articles array
+  Article.find({saved: true}, function(error, doc) {
     // Log any errors
     if (error) {
       console.log(error);
     }
-    // Otherwise
+    // Or send the doc to the browser as a json object
     else {
-      // Use the article id to find and update it's note
-      Article.findOneAndUpdate({ "_id": req.params.id }, { "Comment": doc._id })
-      // Execute the above query
-      .exec(function(err, doc) {
-        // Log any errors
-        if (err) {
-          console.log(err);
-        }
-        else {
-          // Or send the document to the browser
-          res.send(doc);
-        }
-      });
+      // 
+      console.log(doc);
+      res.json(doc);
     }
   });
-  // res.render("index");
 });
+
+app.post("/saved/:id", function(req, res){
+  var savedArticle = new Article(req.body)
+  savedArticle.savedTrue();
+  savedArticle.save(function(error, doc){
+    if (error) {
+      res.send(error);
+    } else {
+      // res.json(doc)
+      console.log(doc);
+    }
+  });
+  res.render("saved");
+})
 
 
 
