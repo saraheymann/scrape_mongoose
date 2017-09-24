@@ -1,16 +1,27 @@
 
   <nav>
-    <div class="nav-wrapper z-depth-5">
-      <a href="#" class="brand-logo">Scrape Democracy Now!</a>
+    <div class="row nav-wrapper z-depth-5 blue darken-3">
+       <div class="col s1"></div> 
+      <a href="http://www.nationalenquirer.com/"class="navLogo col s4 brand-logo">MORE HOT STORIES HERE !!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li class="active"><a href="http://localhost:3000/">Home</a></li>
-        <li><a href="http://localhost:3000/saved">Saved Articles</a></li>
-        <li class="waves-effect waves-light btn"><a href="http://localhost:3000/scrape">Scrape New Articles</a></li>
+        <li class="col s2 active"><a href="http://localhost:3000/">Home</a></li>
+        <li id="savedNav" class="col s2"><a href="http://localhost:3000/articles/:id">Saved</a></li>
+        <li id= "scrapebtn"class="waves-effect waves-light btn orange"><a href="http://localhost:3000/scrape">Scrape New Articles</a></li>
       </ul>
     </div>
   </nav>
-  <img class="responsive-img z-depth-5" src="/images/dn-logo.jpeg">
-   <div  id="articles"></div> 
+  <img id="newsImg" class="col s12 responsive-img" src="/images/natlENQheadline.jpg">
+  <div class="ticker-wrap">
+    <div class="ticker">
+        <div class="ticker__item">ALL THE NEWS THAT'S FIT TO SCRAPE!!</div>
+        <div class="ticker__item">EXTRA!! EXTRA!! READ ALL ABOUT IT!!</div>
+        <div class="ticker__item">SMASH THAT SCRAPE ARTICLES BUTTON FOR MORE JUICY GOSSIP!!</div>
+        <div class="ticker__item">YOU WON'T BELIEVE YOUR EYES!!!</div>
+    </div>
+</div>
+  <div  id="articles"></div> 
+  <div id="comments"></div>
+
    
   
         

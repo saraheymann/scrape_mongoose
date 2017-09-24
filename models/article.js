@@ -3,23 +3,34 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-
-  // headline: {
-  //   type: String
-  // },
+  title: {
+    type: String,
+    unique: true
+  },
   summary: {
     type: String,
-    required: true
+    // required: true,
+    unique: true
   },
   url:{
     type: String,
-    required: true
+    // required: true,
+    unique: true
+  },
+  saved:{
+    type: Boolean,
+    default: false
   },
   Comment:{
     type: Schema.Types.ObjectId,
     ref: "Comment"
     }
 });
+
+ArticleSchema.methods.savedTrue = function(){
+  this.saved = true;
+  return this.saved;
+};
 
 var Article = mongoose.model("Article", ArticleSchema);
 
